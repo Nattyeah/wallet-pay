@@ -21,7 +21,7 @@ public class UserController {
 
   @PostMapping
   public UserResponse createUser(@RequestBody @Valid UserRequest userRequest) {
-    var user = userService.createCommonUser(userMapper.toEntity(userRequest));
+    var user = userService.createUser(userMapper.toEntity(userRequest));
     return userMapper.toResponse(user);
   }
 }

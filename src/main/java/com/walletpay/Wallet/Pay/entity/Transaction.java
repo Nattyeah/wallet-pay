@@ -1,29 +1,31 @@
 package com.walletpay.Wallet.Pay.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.MongoId;
-
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Getter
 @Setter
-@Entity
+@Document(collection = "transactions")
 public class Transaction {
 
-    @MongoId
-    private Long id;
+  @Id
+  @MongoId
+  private ObjectId id;
 
-    @ManyToOne
-    private User payer;
+  @DBRef
+  private User payer;
 
-    @ManyToOne
-    private User payee;
+  @DBRef
+  private User payee;
 
-    private BigDecimal value;
+  private BigDecimal value;
 
-    private LocalDateTime timestamp;
+  private LocalDateTime timestamp;
 }
