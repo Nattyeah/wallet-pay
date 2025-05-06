@@ -20,6 +20,7 @@ public class User {
   @Id
   @MongoId
   private ObjectId id;
+
   private String name;
   private String document;
   private String email;
