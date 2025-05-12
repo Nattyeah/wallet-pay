@@ -20,6 +20,11 @@ public class UserService {
     return userRepository.save(userRequest);
   }
 
+//  TODO FIX TO ACTUALLY UPDATE BALANCE
+  public Transaction updateBalance(Transaction transactionRequest) {
+    return transactionRepository.save(transactionRequest);
+  }
+
   //    TODO VALIDATE BALANCE BEFORE TRANSFERENCE
 //    TODO TRANSACTIONS HISTORY
   public TransactionResponse getHistory(Transaction transactionRequest, User userRequest) {
@@ -28,5 +33,5 @@ public class UserService {
     return null;
   }
 
-  //Como entender melhor de quem é a obrigação de mandar as informacoes entre o front e back
+
 }

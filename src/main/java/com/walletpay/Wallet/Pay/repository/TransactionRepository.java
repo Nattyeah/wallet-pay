@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TransactionRepository extends MongoRepository<Transaction, Long> {
+public interface TransactionRepository extends MongoRepository<Transaction, ObjectId> {
 
   List<Transaction> findByPayerId(ObjectId payerId);
 

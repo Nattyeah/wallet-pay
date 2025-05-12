@@ -6,13 +6,14 @@ import lombok.Builder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId;
 
 @Builder
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public record TransactionRequest(
-        Long payerId,
-        Long payeeId,
-        BigDecimal value,
-        LocalDateTime timestamp
+    ObjectId payerId,
+    ObjectId payeeId,
+    BigDecimal value,
+    LocalDateTime timestamp
 ) {
 }

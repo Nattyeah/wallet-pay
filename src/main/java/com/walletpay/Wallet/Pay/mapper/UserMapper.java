@@ -4,7 +4,6 @@ import com.walletpay.Wallet.Pay.UserType;
 import com.walletpay.Wallet.Pay.entity.User;
 import com.walletpay.Wallet.Pay.entity.dto.request.UserRequest;
 import com.walletpay.Wallet.Pay.entity.dto.response.UserResponse;
-import org.bson.types.ObjectId;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -12,6 +11,8 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
   @Mapping(target = "id", ignore = true)
+  @Mapping(target = "sentTransactions", ignore = true)
+  @Mapping(target = "receivedTransactions", ignore = true)
   @Mapping(target = "userType", expression = "java(determineUserType(userRequest.document()))")
   User toEntity(UserRequest userRequest);
 
@@ -25,12 +26,5 @@ public interface UserMapper {
       return UserType.COMMON;
     }
     return UserType.UNKNOWN;
-  }
-// TODO understand how can I make this work
-  default Long mapObjectIdToLong(ObjectId objectId) {
-    if (objectId == null) {
-      return null;
-    }
-    return objectId.getTimestamp() & 0xFFFFFFFFL; // Example: Use timestamp part
   }
 }
